@@ -1,6 +1,4 @@
-#include  <QTRSensors.h> //Make sure to install the library
-
-/*Sensor Array object initialisation */
+#include  <QTRSensors.h> 
 QTRSensors  qtr;
 const uint8_t SensorCount = 8;
 uint16_t sensorValues[SensorCount];
@@ -16,7 +14,6 @@ int P;
 int I;
 int D;
 
-/* Global variables */
 int  lastError = 0;
 boolean onoff = false;
 
@@ -75,7 +72,7 @@ void  loop() {
   if(digitalRead(buttonstart) == HIGH) {
     onoff =! onoff;
     if(onoff = true) {
-      delay(1000);//a delay when the robot starts
+      delay(1000);
     }
     else {
       delay(50);
@@ -90,7 +87,7 @@ void  loop() {
 }
 
 void  forward_brake(int posa, int posb) {
-  //set the appropriate values for aphase  and bphase so that the robot goes straight
+  
   digitalWrite(aphase, LOW);
   digitalWrite(bphase,  LOW);
   analogWrite(aenbl, posa);
@@ -106,7 +103,7 @@ void  PID_control() {
   D = error - lastError;
   lastError = error;
   int motorspeed = P*Kp + I*Ki + D*Kd; //calculate the correction
-                                       //needed to be applied to the speed
+                                       
   
   int motorspeeda = basespeeda + motorspeed;
   int motorspeedb = basespeedb -  motorspeed;
